@@ -9,12 +9,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Slice">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/actions" />
+
+        <provider
+            android:name="com.example.slice.SearchFlight.FlightSearchSliceProvider"
+            android:authorities="com.example.slice.SearchFlight"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="SearchFlight"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+
         <provider
             android:name=".MySliceProvider"
             android:authorities="com.example.slice.slices.provider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.app.slice.category.SLICE" />
 
                 <data
@@ -23,18 +51,6 @@
                     android:scheme="http" />
             </intent-filter>
         </provider>
-
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/actions" />
     </application>
 
 </manifest>

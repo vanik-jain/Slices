@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="#e8e8e8">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:src="@drawable/flight_back"
+                    android:scaleType="fitXY" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/white"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp">
+
+                            <RadioButton
+                                android:id="@+id/rb_round"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Roundtrip"
+                                android:checked="true"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="#5f2db2"
+                                android:textSize="12dp" />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="One Way"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="#5f2db2"
+                                android:buttonTint="#8e15cd"
+                                android:textSize="12dp" />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Multi Cities"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="#5f2db2"
+                                android:buttonTint="#8e15cd"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentLeft="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FROM"
+                                android:textColor="#fff"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="12dp" />
+
+                            <TextView
+                                android:id="@+id/tv_dep_iat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="DEL"
+                                android:textColor="#fff"
+                                android:textSize="40dp"
+                                android:layout_gravity="center_horizontal"
+                                android:textStyle="bold"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="New Delhi"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="#fff"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerInParent="true"
+                            android:scaleType="fitCenter"
+                            android:src="@color/white" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TO"
+                                android:textColor="#fff"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="12dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="BOM"
+                                android:textColor="#fff"
+                                android:textSize="40dp"
+                                android:layout_gravity="center_horizontal"
+                                android:textStyle="bold"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mumbai"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="#fff"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignParentLeft="true">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:src="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Depart on"
+                                android:textColor="#333"
+                                android:layout_marginLeft="5dp"
+                                android:gravity="center_vertical"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="20 SEP"
+                            android:textStyle="bold"
+                            android:textSize="24dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tuesday, 2016"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#333"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:src="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Return on"
+                                android:textColor="#333"
+                                android:layout_marginLeft="5dp"
+                                android:gravity="center_vertical"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="22 SEP"
+                            android:textStyle="bold"
+                            android:textSize="24dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thursday, 2016"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#333"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignParentLeft="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adults"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#333"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="10+ years"
+                            android:textColor="#333"
+                            android:gravity="center_vertical"
+                            android:textSize="12dp"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="2"
+                            android:textStyle="bold"
+                            android:textSize="24dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center_horizontal" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_alignParentRight="false"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Childrens"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#333"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="2-10 years"
+                            android:textColor="#333"
+                            android:gravity="center_vertical"
+                            android:textSize="12dp"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="0"
+                            android:textStyle="bold"
+                            android:textSize="24dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center_horizontal" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Infants"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#333"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="1-2 years"
+                            android:textColor="#333"
+                            android:gravity="center_vertical"
+                            android:textSize="12dp"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="0"
+                            android:textStyle="bold"
+                            android:textSize="24dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center_horizontal" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Economy"
+                        android:checked="true"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#5f2db2"
+                        android:textSize="12dp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Business"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#5f2db2"
+                        android:buttonTint="#8e15cd"
+                        android:textSize="12dp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="First"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#5f2db2"
+                        android:buttonTint="#8e15cd"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+            </RadioGroup>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SEARCH FLIGHT"
+                android:id="@+id/button"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/white"
+                android:textColor="#fff"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
