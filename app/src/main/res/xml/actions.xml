@@ -13,4 +13,10 @@
                 urlTemplate="content://com.example.slice.provider/cart">
             </fulfillment>
         </action>
+    <action intentName="actions.intent.GET_ORDER">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://com.example.slice.digital.provider/digital/orders">
+        </fulfillment>
+    </action>
 </actions>

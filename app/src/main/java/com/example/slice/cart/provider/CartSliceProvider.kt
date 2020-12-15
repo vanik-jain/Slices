@@ -2,6 +2,7 @@ package com.example.slice.cart.provider
 
 import android.app.PendingIntent
 import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.core.graphics.drawable.IconCompat
@@ -54,13 +55,7 @@ class CartSliceProvider : SliceProvider() {
             // Path recognized. Customize the Slice using the androidx.slice.builders API.
             // Note: ANR and StrictMode are enforced here so don"t do any heavy operations. 
             // Only bind data that is currently available in memory.
-            ListBuilder(context, sliceUri, ListBuilder.INFINITY)
-                .addRow(
-                    ListBuilder.RowBuilder()
-                        .setTitle("You have 3 items in your cart")
-                        .setPrimaryAction(activityAction)
-                )
-                .build()
+            createRetailGetCartSlice(context, sliceUri, activityAction)
         } else {
             // Error: Path not found.
             ListBuilder(context, sliceUri, ListBuilder.INFINITY)
@@ -83,6 +78,20 @@ class CartSliceProvider : SliceProvider() {
             "Open App"
         )
     }
+
+    private fun createRetailGetCartSlice(
+        context: Context, sliceUri: Uri, activityAction: SliceAction
+    ) = ListBuilder(
+        context, sliceUri, ListBuilder.INFINITY
+    ).setAccentColor(0xff0F9D) // Specify color for tinting icons
+        .setHeader(
+            ListBuilder.HeaderBuilder().setTitle("Retail Orders").setSubtitle("Total Items: 21")
+                .setSummary("Total Items: 21")
+        ).addRow(
+            ListBuilder.RowBuilder().setTitle("Items").setSubtitle("2 C&C orders").addEndItem(
+                IconCompat.createWithResource(context, R.mipmap.ic_blibli_round), ListBuilder.ICON_IMAGE
+            ).setPrimaryAction(activityAction)
+        ).build()
 
     /**
      * Slice has been pinned to external process. Subscribe to data source if necessary.
