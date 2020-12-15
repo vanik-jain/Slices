@@ -9,7 +9,7 @@
     <action intentName="actions.intent.GET_ORDER">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://com.example.slice.slices.provider/digital/orders">
+            urlTemplate="content://com.example.slice.digital.provider/digital/orders">
         </fulfillment>
     </action>
 </actions>
