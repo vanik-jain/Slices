@@ -13,9 +13,6 @@ private var date: String? = null
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.flight_reservation)
-    val bundle: Bundle? = intent.extras
-    uri = bundle?.getString("sliceUri")
-//    date = uri.split()
-    Log.i("naveen",bundle.toString())
+    uri = intent.getStringExtra("sliceUri")
   }
 }
