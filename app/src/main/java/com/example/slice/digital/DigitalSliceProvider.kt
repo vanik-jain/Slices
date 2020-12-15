@@ -12,7 +12,7 @@ import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
 import com.example.slice.R
 import com.example.slice.digital.view.DigitalOrderActivity
-import com.example.slice.digital.view.TradeOrderCreateActivity
+import com.example.slice.digital.view.DigitalOrderCreateActivity
 
 class DigitalSliceProvider : SliceProvider() {
 
@@ -63,7 +63,7 @@ class DigitalSliceProvider : SliceProvider() {
     if (isNewOrder) {
       return SliceAction.create(
         PendingIntent.getActivity(
-          context, 0, Intent(context, TradeOrderCreateActivity::class.java), 0
+          context, 0, Intent(context, DigitalOrderCreateActivity::class.java), 0
         ),
         IconCompat.createWithResource(context, R.mipmap.ic_blibli_round),
         ListBuilder.SMALL_IMAGE,

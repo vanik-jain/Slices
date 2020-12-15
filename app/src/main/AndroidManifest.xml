@@ -70,6 +70,8 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name=".digital.view.DigitalOrderDetailActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".digital.view.DigitalOrderCreateActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
