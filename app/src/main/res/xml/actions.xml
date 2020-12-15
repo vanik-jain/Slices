@@ -19,4 +19,10 @@
             urlTemplate="content://com.example.slice.digital.provider/digital/orders">
         </fulfillment>
     </action>
+    <action intentName="actions.intent.CREATE_DIGITAL_DOCUMENT">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://com.example.slice.digital.provider/digital/create">
+        </fulfillment>
+    </action>
 </actions>

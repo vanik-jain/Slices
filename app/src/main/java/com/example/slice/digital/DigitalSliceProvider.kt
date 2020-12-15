@@ -10,8 +10,9 @@ import androidx.slice.Slice
 import androidx.slice.SliceProvider
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
-import com.example.slice.MainActivity
 import com.example.slice.R
+import com.example.slice.digital.view.DigitalOrderActivity
+import com.example.slice.digital.view.TradeOrderCreateActivity
 
 class DigitalSliceProvider : SliceProvider() {
 
@@ -39,11 +40,15 @@ class DigitalSliceProvider : SliceProvider() {
 
   override fun onBindSlice(sliceUri: Uri): Slice? {
     val context = context ?: return null
-    var activityAction = createDigitalOrderAction() ?: return null
+    var activityAction = createDigitalOrderAction(false) ?: return null
     return when (sliceUri.path) {
       "/digital/orders" -> {
-        activityAction = createDigitalOrderAction()
+        activityAction = createDigitalOrderAction(false)
         createDigitalGetOrderSlice(context, sliceUri, activityAction)
+      }
+      "/digital/create" -> {
+        activityAction = createDigitalOrderAction(true)
+        createSliceNewOrderHeader(context, sliceUri, activityAction)
       }
       else -> {
         // Error: Path not found.
@@ -54,15 +59,26 @@ class DigitalSliceProvider : SliceProvider() {
     }
   }
 
-  private fun createDigitalOrderAction(): SliceAction {
-    return SliceAction.create(
-      PendingIntent.getActivity(
-        context, 0, Intent(context, DigitalOrderActivity::class.java), 0
-      ),
-      IconCompat.createWithResource(context, R.mipmap.ic_blibli_round),
-      ListBuilder.SMALL_IMAGE,
-      "Open all orders in Blibli"
-    )
+  private fun createDigitalOrderAction(isNewOrder: Boolean): SliceAction {
+    if (isNewOrder) {
+      return SliceAction.create(
+        PendingIntent.getActivity(
+          context, 0, Intent(context, TradeOrderCreateActivity::class.java), 0
+        ),
+        IconCompat.createWithResource(context, R.mipmap.ic_blibli_round),
+        ListBuilder.SMALL_IMAGE,
+        "Create new order in Blibli app"
+      )
+    } else {
+      return SliceAction.create(
+        PendingIntent.getActivity(
+          context, 0, Intent(context, DigitalOrderActivity::class.java), 0
+        ),
+        IconCompat.createWithResource(context, R.mipmap.ic_blibli_round),
+        ListBuilder.SMALL_IMAGE,
+        "Open all orders in Blibli"
+      )
+    }
   }
 
   private fun createDigitalGetOrderSlice(
@@ -79,6 +95,29 @@ class DigitalSliceProvider : SliceProvider() {
       ).setPrimaryAction(activityAction)
     ).build()
 
+  private fun createSliceNewOrderHeader(
+    context: Context,
+    sliceUri: Uri,
+    activityAction: SliceAction,
+    subtitle: String = "",
+    summaryString: String = "",
+    descriptionTitle: String = "",
+    description: String = ""
+  ): Slice {
+    return ListBuilder(
+      context, sliceUri, ListBuilder.INFINITY
+    ).setAccentColor(0xff0F9D) // Specify color for tinting icons
+      .setHeader(
+
+        ListBuilder.HeaderBuilder().setTitle("Creating new order").setSubtitle(subtitle)
+          .setSummary(summaryString)
+      ).addRow(
+        ListBuilder.RowBuilder().setTitle(descriptionTitle).setSubtitle(description).addEndItem(
+          IconCompat.createWithResource(context, R.mipmap.ic_blibli_round), ListBuilder.ICON_IMAGE
+        ).setPrimaryAction(activityAction)
+      ).build()
+  }
+
   override fun onSlicePinned(sliceUri: Uri?) {
     // When data is received, call context.contentResolver.notifyChange(sliceUri, null) to
     // trigger MySliceProvider#onBindSlice(Uri) again.
@@ -93,18 +132,4 @@ class DigitalSliceProvider : SliceProvider() {
   ) = ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
     ListBuilder.RowBuilder().setPrimaryAction(activityAction).setTitle("Your flight is at 10pm")
   ).build()
-
-  private fun createSliceWithHeader(
-    context: Context, sliceUri: Uri, activityAction: SliceAction
-  ) = ListBuilder(
-    context, sliceUri, ListBuilder.INFINITY
-  ).setAccentColor(0xff0F9D) // Specify color for tinting icons
-    .setHeader(
-      ListBuilder.HeaderBuilder().setTitle("Get a ride").setSubtitle("Ride in 4 min")
-        .setSummary("Work in 1 hour 45 min | Home in 12 min")
-    ).addRow(
-      ListBuilder.RowBuilder().setTitle("Home").setSubtitle("12 miles | 12 min | $9.00").addEndItem(
-        IconCompat.createWithResource(context, R.mipmap.ic_launcher), ListBuilder.ICON_IMAGE
-      ).setPrimaryAction(activityAction)
-    ).build()
 }

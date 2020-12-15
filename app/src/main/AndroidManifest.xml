@@ -66,7 +66,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".digital.DigitalOrderActivity"
+        <activity android:name=".digital.view.DigitalOrderActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".digital.view.DigitalOrderDetailActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <meta-data
             android:name="com.google.android.actions"
