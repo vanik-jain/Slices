@@ -7,12 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.slice.R
 
 class FlightSearchActivity : AppCompatActivity() {
+private var uri: String? = null
+private var date: String? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.flight_reservation)
     val bundle: Bundle? = intent.extras
+    uri = bundle?.getString("sliceUri")
+//    date = uri.split()
     Log.i("naveen",bundle.toString())
-    val depIataCode = bundle?.get("depIataCode")
   }
 }

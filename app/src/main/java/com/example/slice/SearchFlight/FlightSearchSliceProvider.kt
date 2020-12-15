@@ -83,18 +83,7 @@ class FlightSearchSliceProvider : SliceProvider() {
 
   private fun createActivityAction(sliceUri: Uri): SliceAction? {
         val intent: Intent = Intent(context, FlightSearchActivity::class.java)
-       name = sliceUri.getQueryParameter("name")
-       time = sliceUri.getQueryParameter("departureTime")
-       arrivalAddress = sliceUri.getQueryParameter("arrivalAirportAddress")
-       arrivalIataCode = sliceUri.getQueryParameter("arrivalAirportIatacode")
-       depAddress = sliceUri.getQueryParameter("departureAirportAddress")
-       depIataCode = sliceUri.getQueryParameter("departureAirportIatacode")
-        intent.putExtra("name", name)
-        intent.putExtra("depTime",time)
-        intent.putExtra("arrivalAddress", arrivalAddress)
-        intent.putExtra("depAddress", depAddress)
-        intent.putExtra("arrivalIataCode", arrivalIataCode)
-        intent.putExtra("depIataCode", depIataCode)
+        intent.putExtra("sliceUri", sliceUri.toString())
         return SliceAction.create(
             PendingIntent.getActivity(
                 context, 0, intent, 0
