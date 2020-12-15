@@ -6,6 +6,7 @@
             urlTemplate="content://com.example.slice.slices.provider/hello">
         </fulfillment>
     </action>
+
         <action intentName="actions.intent.GET_CART">
             <fulfillment
                 fulfillmentMode="actions.fulfillment.SLICE"
