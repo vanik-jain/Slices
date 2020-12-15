@@ -2,6 +2,7 @@ package com.example.slice.SearchFlight
 
 import android.app.PendingIntent
 import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.core.graphics.drawable.IconCompat
@@ -54,21 +55,16 @@ class FlightSearchSliceProvider : SliceProvider() {
     // Note: you should switch your build.gradle dependency to
     // slice-builders-ktx for a nicer interface in Kotlin.
     val context = context ?: return null
-    val activityAction = createActivityAction() ?: return null
+    val activityAction = createActivityAction(sliceUri) ?: return null
     return if (sliceUri.path == "/flight") {
-      name = sliceUri.getQueryParameter("name")
-      time = sliceUri.getQueryParameter("departureTime")
-      arrivalAddress = sliceUri.getQueryParameter("arrivalAirportAddress")
-      arrivalIataCode = sliceUri.getQueryParameter("arrivalAirportIatacode")
-      depAddress = sliceUri.getQueryParameter("departureAirportAddress")
-      depIataCode = sliceUri.getQueryParameter("departureAirportIatacode")
 
+        goToFlight(context, sliceUri, activityAction)
       // Path recognized. Customize the Slice using the androidx.slice.builders API.
       // Note: ANR and StrictMode are enforced here so don"t do any heavy operations.
       // Only bind data that is currently available in memory.
-      ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
-          ListBuilder.RowBuilder().setTitle("Let's find your flight tickets").setPrimaryAction(activityAction)
-        ).build()
+//      ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
+//          ListBuilder.RowBuilder().setTitle("Let's find your flight tickets").setPrimaryAction(activityAction)
+//        ).build()
     } else {
       // Error: Path not found.
       ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
@@ -77,8 +73,22 @@ class FlightSearchSliceProvider : SliceProvider() {
     }
   }
 
-  private fun createActivityAction(): SliceAction? {
+   private fun goToFlight(context: Context, sliceUri: Uri, activityAction: SliceAction):Slice? {
+
+       return ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
+           ListBuilder.RowBuilder().setTitle("Let's find your flight tickets").setPrimaryAction(activityAction)
+       ).build()
+
+   }
+
+  private fun createActivityAction(sliceUri: Uri): SliceAction? {
         val intent: Intent = Intent(context, FlightSearchActivity::class.java)
+       name = sliceUri.getQueryParameter("name")
+       time = sliceUri.getQueryParameter("departureTime")
+       arrivalAddress = sliceUri.getQueryParameter("arrivalAirportAddress")
+       arrivalIataCode = sliceUri.getQueryParameter("arrivalAirportIatacode")
+       depAddress = sliceUri.getQueryParameter("departureAirportAddress")
+       depIataCode = sliceUri.getQueryParameter("departureAirportIatacode")
         intent.putExtra("name", name)
         intent.putExtra("depTime",time)
         intent.putExtra("arrivalAddress", arrivalAddress)
@@ -86,7 +96,6 @@ class FlightSearchSliceProvider : SliceProvider() {
         intent.putExtra("arrivalIataCode", arrivalIataCode)
         intent.putExtra("depIataCode", depIataCode)
         return SliceAction.create(
-
             PendingIntent.getActivity(
                 context, 0, intent, 0
             ),
@@ -94,7 +103,6 @@ class FlightSearchSliceProvider : SliceProvider() {
             ListBuilder.ICON_IMAGE,
             "Find my tickets"
         )
-
   }
 
   /**
