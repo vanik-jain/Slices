@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "864649487842",
+    "project_id": "rbapp-1534347739161",
+    "storage_bucket": "rbapp-1534347739161.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864649487842:android:a6982eea9f1c5975f5c5bb",
+        "android_client_info": {
+          "package_name": "com.vapps.uvpa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864649487842-3202ooifvlq4lterdc6qrv3cqfrl7osj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vapps.uvpa",
+            "certificate_hash": "e12b07455c13b3a01456728033118056ce6e794b"
+          }
+        },
+        {
+          "client_id": "864649487842-ctbcb565be6dkt1kd9bbmn8ffdp9jdkb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYAj_iq9_8ncXgf6TaEEG2inCa6mfQd0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864649487842-ctbcb565be6dkt1kd9bbmn8ffdp9jdkb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
