@@ -10,6 +10,7 @@ import androidx.slice.Slice
 import androidx.slice.SliceProvider
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
+import com.example.slice.MainActivity
 import com.example.slice.R
 
 class DigitalSliceProvider : SliceProvider() {
