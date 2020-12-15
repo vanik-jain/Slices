@@ -23,6 +23,20 @@
                     android:scheme="http" />
             </intent-filter>
         </provider>
+        <provider
+            android:name=".digital.DigitalSliceProvider"
+            android:authorities="com.example.slice.digital.provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="slice.example.com"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
 
         <activity android:name=".MainActivity">
             <intent-filter>
