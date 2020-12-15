@@ -9,13 +9,17 @@
     <action intentName="actions.intent.CREATE_FLIGHT_RESERVATION">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://om.example.slice.SearchFlight/flight{?departureTime,name,arrivalAirportAddress,arrivalAirportIatacode,departureAirportAddress,departureAirportIatacode}">
+            urlTemplate="content://com.example.slice.SearchFlight/flight{?departureTime,name,arrivalAirportAddress,arrivalAirportIatacode,departureAirportAddress,departureAirportIatacode}">
             <parameter-mapping urlParameter="departureTime" intentParameter="flightReservation.reservationFor.departureTime" required="true"/>
             <parameter-mapping urlParameter="name" intentParameter="flightReservation.reservationFor.provider.name" />
             <parameter-mapping urlParameter="arrivalAirportAddress" intentParameter="flightReservation.reservationFor.arrivalAirport.address" />
             <parameter-mapping urlParameter="arrivalAirportIatacode" intentParameter="flightReservation.reservationFor.arrivalAirport.iataCode" />
             <parameter-mapping urlParameter="departureAirportAddress" intentParameter="flightReservation.reservationFor.departureAirport.address" />
             <parameter-mapping urlParameter="departureAirportIatacode" intentParameter="flightReservation.reservationFor.departureAirport.iataCode" />
+
         </fulfillment>
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.DEEPLINK"
+            urlTemplate="https://fit-actions.firebaseapp.com/stats" />
     </action>
 </actions>
