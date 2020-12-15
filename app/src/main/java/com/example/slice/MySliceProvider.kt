@@ -10,6 +10,7 @@ import androidx.slice.Slice
 import androidx.slice.SliceProvider
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
+import com.example.slice.digital.DigitalOrderActivity
 
 class MySliceProvider : SliceProvider() {
 
@@ -37,19 +38,33 @@ class MySliceProvider : SliceProvider() {
 
     override fun onBindSlice(sliceUri: Uri): Slice? {
         val context = context ?: return null
-        val activityAction = createActivityAction() ?: return null
-        return if (sliceUri.path == "/hello") {
-            exampleRowBuilder(context, sliceUri, activityAction)
-        } else {
-            // Error: Path not found.
-            ListBuilder(context, sliceUri, ListBuilder.INFINITY)
-                .addRow(
-                    ListBuilder.RowBuilder()
-                        .setTitle("URI not found.")
-                        .setPrimaryAction(activityAction)
-                )
-                .build()
+        var activityAction = createActivityAction() ?: return null
+        return when(sliceUri.path){
+            "/hello" -> {
+                exampleRowBuilder(context, sliceUri, activityAction)
+            }
+            "/digital/orders" -> {
+                activityAction = createDigitalOrderAction()
+                createDigitalGetOrderSlice(context, sliceUri, activityAction)
+            }
+            else -> {
+                // Error: Path not found.
+                ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
+                    ListBuilder.RowBuilder().setTitle("URI not found.").setPrimaryAction(activityAction)
+                ).build()
+            }
         }
+    }
+
+    private fun createDigitalOrderAction(): SliceAction {
+        return SliceAction.create(
+            PendingIntent.getActivity(
+                context, 0, Intent(context, DigitalOrderActivity::class.java), 0
+            ),
+            IconCompat.createWithResource(context, R.mipmap.ic_blibli_round),
+            ListBuilder.SMALL_IMAGE,
+            "Open all orders in Blibli"
+        )
     }
 
     private fun createActivityAction(): SliceAction? {
@@ -96,6 +111,22 @@ class MySliceProvider : SliceProvider() {
             ListBuilder.RowBuilder().setTitle("Home").setSubtitle("12 miles | 12 min | $9.00")
                 .addEndItem(
                     IconCompat.createWithResource(context, R.mipmap.ic_launcher),
+                    ListBuilder.ICON_IMAGE
+                ).setPrimaryAction(activityAction)
+        ).build()
+
+    private fun createDigitalGetOrderSlice(
+        context: Context, sliceUri: Uri, activityAction: SliceAction
+    ) = ListBuilder(
+        context, sliceUri, ListBuilder.INFINITY
+    ).setAccentColor(0xff0F9D) // Specify color for tinting icons
+        .setHeader(
+            ListBuilder.HeaderBuilder().setTitle("See your order history")
+                .setSubtitle("Digital Orders").setSummary("Total Orders: 10")
+        ).addRow(
+            ListBuilder.RowBuilder().setTitle("In last month").setSubtitle("4 prepaid orders")
+                .addEndItem(
+                    IconCompat.createWithResource(context, R.mipmap.ic_blibli_round),
                     ListBuilder.ICON_IMAGE
                 ).setPrimaryAction(activityAction)
         ).build()
