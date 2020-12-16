@@ -22,4 +22,17 @@
             fulfillmentMode="actions.fulfillment.DEEPLINK"
             urlTemplate="https://fit-actions.firebaseapp.com/stats" />
     </action>
+
+        <action intentName="actions.intent.GET_CART">
+            <fulfillment
+                fulfillmentMode="actions.fulfillment.SLICE"
+                urlTemplate="content://com.example.slice.provider/cart">
+            </fulfillment>
+        </action>
+    <action intentName="actions.intent.GET_ORDER">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://com.example.slice.digital.provider/digital/orders">
+        </fulfillment>
+    </action>
 </actions>

@@ -9,20 +9,70 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Slice">
+        <activity android:name=".cart.view.UpdateCartActivity"/>
+        <activity
+            android:name=".cart.view.CartActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
+        <provider
+            android:name=".cart.provider.CartSliceProvider"
+            android:authorities="com.example.slice.provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="provider.slice.example.com"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+        <provider
+            android:name=".MySliceProvider"
+            android:authorities="com.example.slice.slices.provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="slice.example.com"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+        <provider
+            android:name=".digital.DigitalSliceProvider"
+            android:authorities="com.example.slice.digital.provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="slice.example.com"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+
         <activity android:name=".MainActivity">
-
-        </activity>
-
-        <activity android:name=".SearchFlight.FlightSearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".digital.DigitalOrderActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
+        <activity android:name=".SearchFlight.FlightSearchActivity">
+        </activity>
 
         <provider
             android:name="com.example.slice.SearchFlight.FlightSearchSliceProvider"
@@ -40,21 +90,8 @@
             </intent-filter>
         </provider>
 
-        <provider
-            android:name=".MySliceProvider"
-            android:authorities="com.example.slice.slices.provider"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.app.slice.category.SLICE" />
-
-                <data
-                    android:host="slice.example.com"
-                    android:pathPrefix="/"
-                    android:scheme="http" />
-            </intent-filter>
-        </provider>
     </application>
+
+
 
 </manifest>
