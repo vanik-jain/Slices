@@ -71,6 +71,27 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
+        <activity android:name=".SearchFlight.FlightSearchActivity">
+        </activity>
+
+        <provider
+            android:name="com.example.slice.SearchFlight.FlightSearchSliceProvider"
+            android:authorities="com.example.slice.SearchFlight"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="SearchFlight"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+
     </application>
+
+
 
 </manifest>
