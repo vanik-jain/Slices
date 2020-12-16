@@ -17,12 +17,7 @@ class FlightSearchSliceProvider : SliceProvider() {
    * Instantiate any required objects. Return true if the provider was successfully created,
    * false otherwise.
    */
-  private var time: String?= null
-  private var name: String?= null
-  private var arrivalAddress:String? = null
-  private var depAddress:String? = null
-  private var arrivalIataCode: String? = null
-  private var depIataCode: String? = null
+
   override fun onCreateSliceProvider(): Boolean {
     return true
   }
@@ -59,12 +54,6 @@ class FlightSearchSliceProvider : SliceProvider() {
     return if (sliceUri.path == "/flight") {
 
         goToFlight(context, sliceUri, activityAction)
-      // Path recognized. Customize the Slice using the androidx.slice.builders API.
-      // Note: ANR and StrictMode are enforced here so don"t do any heavy operations.
-      // Only bind data that is currently available in memory.
-//      ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
-//          ListBuilder.RowBuilder().setTitle("Let's find your flight tickets").setPrimaryAction(activityAction)
-//        ).build()
     } else {
       // Error: Path not found.
       ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
@@ -74,7 +63,6 @@ class FlightSearchSliceProvider : SliceProvider() {
   }
 
    private fun goToFlight(context: Context, sliceUri: Uri, activityAction: SliceAction):Slice? {
-
        return ListBuilder(context, sliceUri, ListBuilder.INFINITY).addRow(
            ListBuilder.RowBuilder().setTitle("Let's find your flight tickets").setPrimaryAction(activityAction)
        ).build()

@@ -103,7 +103,7 @@
                                 android:textSize="12dp" />
 
                             <TextView
-                                android:id="@+id/tv_dep_iat"
+                                android:id="@+id/tv_dep"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -116,6 +116,7 @@
                                 android:layout_marginBottom="10dp" />
 
                             <TextView
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="New Delhi"
@@ -147,6 +148,7 @@
                                 android:textSize="12dp" />
 
                             <TextView
+                                android:id="@+id/tv_arrival"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -159,6 +161,7 @@
                                 android:layout_marginBottom="10dp" />
 
                             <TextView
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mumbai"
@@ -220,6 +223,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/dep_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
