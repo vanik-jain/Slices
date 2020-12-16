@@ -19,6 +19,7 @@ private var depAddress:String? = null
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.flight_reservation)
+<<<<<<< HEAD
     val bundle: String? = intent.getStringExtra("sliceUri")
     val sliceUri: Uri =
       Uri.parse(bundle)
@@ -28,6 +29,9 @@ private var depAddress:String? = null
     depAddress = sliceUri.getQueryParameter("departureAirportAddress")
     depIata = sliceUri.getQueryParameter("departureAirportIatacode")
     initUi()
+=======
+    uri = intent.getStringExtra("sliceUri")
+>>>>>>> 41b005b39779685c329002a93acfd274e44095c9
   }
 
   private fun initUi() {
