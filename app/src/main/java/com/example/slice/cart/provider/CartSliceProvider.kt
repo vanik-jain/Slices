@@ -5,22 +5,71 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.LayoutDirection
+import android.view.View
+import android.widget.Toast
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.Slice
 import androidx.slice.SliceProvider
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
 import com.example.slice.R
+import com.example.slice.cart.network.IApi
+import com.example.slice.cart.network.ServiceBuilder
 import com.example.slice.cart.view.CartActivity
+import com.example.slice.model.SampleResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.IOException
 
 class CartSliceProvider : SliceProvider() {
     /**
      * Instantiate any required objects. Return true if the provider was successfully created,
      * false otherwise.
      */
+
+    companion object {
+        fun getUri(context: Context, path: String): Uri {
+            return Uri.Builder()
+                .scheme(ContentResolver.SCHEME_CONTENT)
+                .authority(context.packageName)
+                .appendPath(path)
+                .build()
+        }
+    }
+
+    private var vanik = ""
     override fun onCreateSliceProvider(): Boolean {
+//        val request = ServiceBuilder.buildService(IApi::class.java)
+//        val call = request.getResponse()
+//        call.enqueue(object : Callback<SampleResponse> {
+//            override fun onResponse(
+//                call: Call<SampleResponse>, response: Response<SampleResponse>
+//            ) {
+//                if (response.isSuccessful) {
+//                vanik = vanik.plus(response.toString())
+//                    context?.let {
+//                        it.contentResolver?.notifyChange(
+//                            CartSliceProvider.getUri(it, "/cart"), null
+//                        )
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<SampleResponse>, t: Throwable) {
+//                vanik = vanik.plus(t.message.toString())
+//                context?.let {
+//                    it.contentResolver?.notifyChange(
+//                        CartSliceProvider.getUri(it, "/cart"), null
+//                    )
+//                }
+//            }
+//        })
+//
         return true
     }
+
 
     /**
      * Converts URL to content URI (i.e. content://com.example.slice.provider...)
@@ -53,8 +102,9 @@ class CartSliceProvider : SliceProvider() {
         val activityAction = createActivityAction() ?: return null
         return if (sliceUri.path == "/cart") {
             // Path recognized. Customize the Slice using the androidx.slice.builders API.
-            // Note: ANR and StrictMode are enforced here so don"t do any heavy operations. 
+            // Note: ANR and StrictMode are enforced here so don"t do any heavy operations.
             // Only bind data that is currently available in memory.
+
             createRetailGetCartSlice(context, sliceUri, activityAction)
         } else {
             // Error: Path not found.
@@ -63,7 +113,7 @@ class CartSliceProvider : SliceProvider() {
                     ListBuilder.RowBuilder()
                         .setTitle("URI not found.")
                         .setPrimaryAction(activityAction)
-                )
+                ).setLayoutDirection(View.LAYOUT_DIRECTION_RTL)
                 .build()
         }
     }
@@ -85,12 +135,13 @@ class CartSliceProvider : SliceProvider() {
         context, sliceUri, ListBuilder.INFINITY
     ).setAccentColor(0xff0F9D) // Specify color for tinting icons
         .setHeader(
-            ListBuilder.HeaderBuilder().setTitle("Retail Orders").setSubtitle("Total Items: 21")
-                .setSummary("Total Items: 21")
+            ListBuilder.HeaderBuilder().setTitle(vanik).setSubtitle(vanik)
+                .setSummary("Total Items: 21") .setLayoutDirection(View.LAYOUT_DIRECTION_RTL)
         ).addRow(
             ListBuilder.RowBuilder().setTitle("Items").setSubtitle("2 C&C orders").addEndItem(
                 IconCompat.createWithResource(context, R.mipmap.ic_blibli_round), ListBuilder.ICON_IMAGE
             ).setPrimaryAction(activityAction)
+                .setLayoutDirection(View.LAYOUT_DIRECTION_RTL)
         ).build()
 
     /**

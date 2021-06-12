@@ -6,7 +6,8 @@ import android.content.Intent
 import android.net.Uri
 import android.service.voice.VoiceInteractionService
 import androidx.slice.SliceManager
-
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SliceApp : Application() {
 

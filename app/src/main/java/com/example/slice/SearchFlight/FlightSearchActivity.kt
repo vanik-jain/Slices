@@ -2,7 +2,6 @@ package com.example.slice.SearchFlight
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.slice.R
@@ -19,7 +18,6 @@ private var depAddress:String? = null
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.flight_reservation)
-<<<<<<< HEAD
     val bundle: String? = intent.getStringExtra("sliceUri")
     val sliceUri: Uri =
       Uri.parse(bundle)
@@ -28,10 +26,9 @@ private var depAddress:String? = null
     arrAddress = sliceUri.getQueryParameter("arrivalAirportAddress")
     depAddress = sliceUri.getQueryParameter("departureAirportAddress")
     depIata = sliceUri.getQueryParameter("departureAirportIatacode")
+    arrivalIata = sliceUri.getQueryParameter("arrivalAirportIatacode")
     initUi()
-=======
     uri = intent.getStringExtra("sliceUri")
->>>>>>> 41b005b39779685c329002a93acfd274e44095c9
   }
 
   private fun initUi() {

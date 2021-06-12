@@ -3,36 +3,54 @@
     <action intentName="actions.intent.GET_RESERVATION">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://com.example.slice.slices.provider/hello">
-        </fulfillment>
-    </action>
-    <action intentName="actions.intent.CREATE_FLIGHT_RESERVATION">
-        <fulfillment
-            fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://com.example.slice.SearchFlight/flight{?departureTime,name,arrivalAirportAddress,arrivalAirportIatacode,departureAirportAddress,departureAirportIatacode}">
-            <parameter-mapping urlParameter="departureTime" intentParameter="flightReservation.reservationFor.departureTime" required="true"/>
-            <parameter-mapping urlParameter="name" intentParameter="flightReservation.reservationFor.provider.name" />
-            <parameter-mapping urlParameter="arrivalAirportAddress" intentParameter="flightReservation.reservationFor.arrivalAirport.address" />
-            <parameter-mapping urlParameter="arrivalAirportIatacode" intentParameter="flightReservation.reservationFor.arrivalAirport.iataCode" />
-            <parameter-mapping urlParameter="departureAirportAddress" intentParameter="flightReservation.reservationFor.departureAirport.address" />
-            <parameter-mapping urlParameter="departureAirportIatacode" intentParameter="flightReservation.reservationFor.departureAirport.iataCode" />
-
+            urlTemplate="content://blibli.mobile.ng.commerce.core.slices.provider/reservation/{?name}">
+            <parameter-mapping
+                intentParameter="reservation.reservationFor.name"
+                required="true"
+                urlParameter="name" />
         </fulfillment>
         <fulfillment
             fulfillmentMode="actions.fulfillment.DEEPLINK"
-            urlTemplate="https://fit-actions.firebaseapp.com/stats" />
+            urlTemplate="content://com.example.slice.slices.provider/hello" />
     </action>
+<!--    <action intentName="actions.intent.CREATE_FLIGHT_RESERVATION">-->
+<!--        <fulfillment-->
+<!--            fulfillmentMode="actions.fulfillment.SLICE"-->
+<!--            urlTemplate="content://com.example.slice.SearchFlight/flight{?departureTime,name,arrivalAirportAddress,arrivalAirportIatacode,departureAirportAddress,departureAirportIatacode}">-->
+<!--            <parameter-mapping-->
+<!--                intentParameter="flightReservation.reservationFor.departureTime"-->
+<!--                required="true"-->
+<!--                urlParameter="departureTime" />-->
+<!--            <parameter-mapping-->
+<!--                intentParameter="flightReservation.reservationFor.provider.name"-->
+<!--                urlParameter="name" />-->
+<!--            <parameter-mapping-->
+<!--                intentParameter="flightReservation.reservationFor.arrivalAirport.address"-->
+<!--                urlParameter="arrivalAirportAddress" />-->
+<!--            <parameter-mapping-->
+<!--                intentParameter="flightReservation.reservationFor.arrivalAirport.iataCode"-->
+<!--                urlParameter="arrivalAirportIatacode" />-->
+<!--            <parameter-mapping-->
+<!--                intentParameter="flightReservation.reservationFor.departureAirport.address"-->
+<!--                urlParameter="departureAirportAddress" />-->
+<!--            <parameter-mapping-->
+<!--                intentParameter="flightReservation.reservationFor.departureAirport.iataCode"-->
+<!--                urlParameter="departureAirportIatacode" />-->
 
-        <action intentName="actions.intent.GET_CART">
-            <fulfillment
-                fulfillmentMode="actions.fulfillment.SLICE"
-                urlTemplate="content://com.example.slice.provider/cart">
-            </fulfillment>
-        </action>
+<!--        </fulfillment>-->
+<!--        <fulfillment-->
+<!--            fulfillmentMode="actions.fulfillment.DEEPLINK"-->
+<!--&lt;!&ndash;            urlTemplate="https://fit-actions.firebaseapp.com/stats" />&ndash;&gt;-->
+<!--    </action>-->
+
+    <action intentName="actions.intent.GET_CART">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://com.example.slice.provider/cart" />
+    </action>
     <action intentName="actions.intent.GET_ORDER">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://com.example.slice.digital.provider/digital/orders">
-        </fulfillment>
+            urlTemplate="content://com.example.slice.digital.provider/digital/orders"></fulfillment>
     </action>
 </actions>

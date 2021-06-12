@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.slice">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -29,6 +30,24 @@
                     android:scheme="http" />
             </intent-filter>
         </provider>
+
+        <provider
+            android:name=".SearchFlight.FlightSearchSliceProvider"
+            android:authorities="com.example.slice.SearchFlight"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="SearchFlight"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+
+
         <provider
             android:name=".MySliceProvider"
             android:authorities="com.example.slice.slices.provider"
@@ -59,36 +78,22 @@
             </intent-filter>
         </provider>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+
+        <activity android:name=".digital.DigitalOrderActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".digital.DigitalOrderActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
-        <activity android:name=".SearchFlight.FlightSearchActivity">
-        </activity>
 
-        <provider
-            android:name="com.example.slice.SearchFlight.FlightSearchSliceProvider"
-            android:authorities="com.example.slice.SearchFlight"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.app.slice.category.SLICE" />
-
-                <data
-                    android:host="SearchFlight"
-                    android:pathPrefix="/"
-                    android:scheme="http" />
-            </intent-filter>
-        </provider>
+        <activity android:name=".SearchFlight.FlightSearchActivity"/>
 
     </application>
 

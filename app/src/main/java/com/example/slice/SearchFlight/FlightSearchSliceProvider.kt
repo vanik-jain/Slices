@@ -52,7 +52,6 @@ class FlightSearchSliceProvider : SliceProvider() {
     val context = context ?: return null
     val activityAction = createActivityAction(sliceUri) ?: return null
     return if (sliceUri.path == "/flight") {
-
         goToFlight(context, sliceUri, activityAction)
     } else {
       // Error: Path not found.
